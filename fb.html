@@ -101,11 +101,11 @@
 
         function start() {
 
-            //呼叫 Graph API : fb.api(連線網址,回呼函式(結果)) /me 簡寫 代表當前使用者
-            FB.api('https://graph.facebook.com/10156478901450003', function (response) {
+            //呼叫 Graph API : fb.api(連線網址,回呼函式(結果)) /me 簡寫 代表當前使用者 全稱https://graph.facebook.com/10156478901450003
+            FB.api('/10156478901450003', function (response) {
                 console.log(response);
-                document.getElementById('status').innerHTML =
-                    'Thanks for logging in, ' + response.name + '!';
+                let main = document.querySelector("#main");
+                main.innerHTML = response.name;
             });
         }
     </script>
