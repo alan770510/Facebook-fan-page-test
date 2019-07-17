@@ -107,11 +107,19 @@
                 alert("發布貼文成功");
             })
         }
+
+        function share() {
+            FB.ui({
+                method: 'share',
+                href: 'https://alan770510.github.io/alan770510.github.io.fb/fb2.html',
+            }, function (response) {});
+        }
     </script>
 
 
 
     <h3> Facebook Login</h3>
+    <button onclick="share();">share</button>
     <div id="welcome" style="display:none">
         <button onclick="login();">Facebook Login</button>
     </div>
