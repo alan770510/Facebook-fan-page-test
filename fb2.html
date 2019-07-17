@@ -70,7 +70,8 @@
             FB.api('/me?fields=id,name,email,gender', function (response) {
                 console.log(response);
                 let main = document.querySelector("#main");
-                main.innerHTML = `使用者姓名:${response.name} \n Email:${response.email} \n  ID:${response.id}`;
+                main.innerHTML = `使用者姓名:${response.name} \n Email:${response.email} \n  ID:${response.id}\n
+                gender: ${response.gender}`;
             });
         }
     </script>
