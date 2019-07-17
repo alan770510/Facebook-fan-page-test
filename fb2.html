@@ -71,9 +71,11 @@
                 console.log(response);
                 let main = document.querySelector("#main");
                 main.innerHTML =
-                    "<img src='https://graph.facebook.com/" + response.id + "/picture'/>";
+                    `<img src='https://graph.facebook.com/" + ${response.id} + "/picture' />
+                使用者姓名:${response.name} \n Email:${response.email} \n ID:${response.id}\n gender: ${response.gender}`;
+                //   "<img src='https://graph.facebook.com/" + response.id + "/picture?type=large'/>";
                 // `使用者姓名:${response.name} \n Email:${response.email} \n  ID:${response.id}\n gender: ${response.gender}`;
-            });
+            })
         }
     </script>
 
