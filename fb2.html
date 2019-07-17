@@ -77,7 +77,7 @@
                 // `使用者姓名:${response.name} \n Email:${response.email} \n  ID:${response.id}\n gender: ${response.gender}`;
             });
             //抓使用者的塗鴉牆
-            fb.api('/me/feed', function (response) {
+            FB.api('/me/feed', function (response) {
                 console.log("feed = ", response);
             });
         }
