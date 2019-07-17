@@ -83,7 +83,7 @@
             //抓使用者管理的粉絲專頁 https://developers.facebook.com/docs/pages/managing
             FB.api('/me/accounts', function (response) {
                 console.log("pages =", response);
-                let pageToken = response.data[0].access.token;
+                let pageToken = response.data[0].access_token;
                 let pageId = response.data[0].id;
                 FB.api("/" + pageid + "/feed", "POST", {
                     message: "Test page Publish"
