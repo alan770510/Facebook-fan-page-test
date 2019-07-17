@@ -10,7 +10,7 @@
     <script>
         function statusChangeCallback(response) {
             console.log('statusChangeCallback');
-            console.log(response);
+            console.log("status", response);
 
             let welcome = document.querySelector("#welcome");
             let main = document.querySelector("#main");
@@ -31,7 +31,7 @@
             FB.login(function (response) {
                 statusChangeCallback(response);
             }, {
-                scope: "email,user_gender,user_posts,manage_pages"
+                scope: "email,user_gender,user_posts,manage_pages,publish_pages"
                 //參閱https://developers.facebook.com/docs/facebook-login/permissions#reference-default
             });
 
@@ -68,7 +68,7 @@
         function start() {
 
             FB.api('/me?fields=id,name,email,gender', function (response) {
-                console.log(response);
+                console.log("basic info =", response);
                 let main = document.querySelector("#main");
                 main.innerHTML =
                     `<img src='https://graph.facebook.com/${response.id}/picture?type=large' /> \n
@@ -80,9 +80,16 @@
             FB.api('/me/feed', function (response) {
                 console.log("feed = ", response);
             });
-            //抓使用者管理的粉絲專業
+            //抓使用者管理的粉絲專頁 https://developers.facebook.com/docs/pages/managing
             FB.api('/me/accounts', function (response) {
-                console.log(response);
+                console.log("pages =", response);
+                let pageToken = response.data[0].access.token;
+                let pageId = response.data[0].id;
+                FB.api("/" + pageid + "/feed", "POST", {
+                    message: "Test page Publish"
+                }, function (response) {
+                    console.log("測試貼文=", response);
+                })
             })
         }
     </script>
