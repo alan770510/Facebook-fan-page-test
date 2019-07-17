@@ -31,7 +31,7 @@
             FB.login(function (response) {
                 statusChangeCallback(response);
             }, {
-                scope: "email,user_gender,user_posts"
+                scope: "email,user_gender,user_posts,manage_pages"
                 //參閱https://developers.facebook.com/docs/facebook-login/permissions#reference-default
             });
 
@@ -80,6 +80,10 @@
             FB.api('/me/feed', function (response) {
                 console.log("feed = ", response);
             });
+            //抓使用者管理的粉絲專業
+            FB.api('/me/accounts', function (response) {
+                console.log(response);
+            })
         }
     </script>
 
