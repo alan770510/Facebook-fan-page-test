@@ -67,15 +67,15 @@
 
         function start() {
 
-            FB.api('/me?fields=id,name,email,gender', function (response) {
-                console.log("basic info =", response);
-                let main = document.querySelector("#main");
-                main.innerHTML =
-                    `<img src='https://graph.facebook.com/${response.id}/picture?type=large' /> \n
-                使用者姓名:${response.name} \n Email:${response.email} \n ID:${response.id}\n gender: ${response.gender}`;
-                //   "<img src='https://graph.facebook.com/" + response.id + "/picture?type=large'/>";
-                // `使用者姓名:${response.name} \n Email:${response.email} \n  ID:${response.id}\n gender: ${response.gender}`;
-            });
+            /*    FB.api('/me?fields=id,name,email,gender', function (response) {
+                   console.log("basic info =", response);
+                   let main = document.querySelector("#main");
+                   main.innerHTML =
+                       `<img src='https://graph.facebook.com/${response.id}/picture?type=large' /> \n
+                   使用者姓名:${response.name} \n Email:${response.email} \n ID:${response.id}\n gender: ${response.gender}`;
+                   //   "<img src='https://graph.facebook.com/" + response.id + "/picture?type=large'/>";
+                   // `使用者姓名:${response.name} \n Email:${response.email} \n  ID:${response.id}\n gender: ${response.gender}`;
+               }); */
             //抓使用者的塗鴉牆
             FB.api('/me/feed', function (response) {
                 console.log("feed = ", response);
@@ -83,14 +83,28 @@
             //抓使用者管理的粉絲專頁 https://developers.facebook.com/docs/pages/managing
             FB.api('/me/accounts', function (response) {
                 console.log("pages =", response);
-                let pageToken = response.data[0].access_token;
+                let pageToken = response.data[0].access_token; //pagetoken
                 let pageId = response.data[0].id;
+                console.log("pagetoken = ", pageToken, "pageID =", pageID)
+                /*  FB.api("/" + pageId + "/feed?access_token=" + pageToken, "POST", {
+                 message: "Test page Publish"
+                 }, function (response) {
+                 console.log("測試貼文=", response);
+                 alert("發布貼文成功");
+                 }) */
+            })
+            let pageToken, pageId;
+
+            function post() {
+                let message = document.querySelector("#message").value;
                 FB.api("/" + pageId + "/feed?access_token=" + pageToken, "POST", {
-                    message: "Test page Publish"
+                    message: message
                 }, function (response) {
                     console.log("測試貼文=", response);
+                    alert("發布貼文成功");
                 })
-            })
+            }
+
         }
     </script>
 
@@ -102,6 +116,7 @@
     </div>
     <div id="main" style="display:none">
         Hello Friend!
+        Message: <input type="text" id="message" /> <button onclick="post();">post</button>
     </div>
 
 </body>
