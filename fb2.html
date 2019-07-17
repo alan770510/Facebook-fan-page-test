@@ -32,7 +32,7 @@
                 statusChangeCallback(response);
             }, {
                 scope: "email,user_gender"
-
+                //參閱https://developers.facebook.com/docs/facebook-login/permissions#reference-default
             });
 
         }
@@ -71,7 +71,8 @@
                 console.log(response);
                 let main = document.querySelector("#main");
                 main.innerHTML =
-                    `使用者姓名:${response.name} \n Email:${response.email} \n  ID:${response.id}\n gender: ${response.gender}`;
+                    "<img src='htpps://graph.facebook.com/" + response.id + "picture'/>";
+                // `使用者姓名:${response.name} \n Email:${response.email} \n  ID:${response.id}\n gender: ${response.gender}`;
             });
         }
     </script>
