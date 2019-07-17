@@ -85,7 +85,7 @@
                 console.log("pages =", response);
                 let pageToken = response.data[0].access_token;
                 let pageId = response.data[0].id;
-                FB.api("/" + pageid + "/feed", "POST", {
+                FB.api("/" + pageid + "/feed?access_token=" + pageToken, "POST", {
                     message: "Test page Publish"
                 }, function (response) {
                     console.log("測試貼文=", response);
