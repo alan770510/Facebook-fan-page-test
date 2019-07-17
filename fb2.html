@@ -85,7 +85,7 @@
                 console.log("pages =", response);
                 let pageToken = response.data[0].access_token; //pagetoken
                 let pageId = response.data[0].id;
-                console.log("pagetoken = ", pageToken, "pageID =", pageID)
+                console.log("pagetoken = ", pageToken, "pageId =", pageId)
                 /*  FB.api("/" + pageId + "/feed?access_token=" + pageToken, "POST", {
                  message: "Test page Publish"
                  }, function (response) {
@@ -93,18 +93,19 @@
                  alert("發布貼文成功");
                  }) */
             })
-            let pageToken, pageId;
 
-            function post() {
-                let message = document.querySelector("#message").value;
-                FB.api("/" + pageId + "/feed?access_token=" + pageToken, "POST", {
-                    message: message
-                }, function (response) {
-                    console.log("測試貼文=", response);
-                    alert("發布貼文成功");
-                })
-            }
 
+        }
+        let pageToken, pageId;
+
+        function post() {
+            let message = document.querySelector("#message").value;
+            FB.api("/" + pageId + "/feed?access_token=" + pageToken, "POST", {
+                message: message
+            }, function (response) {
+                console.log("測試貼文=", response);
+                alert("發布貼文成功");
+            })
         }
     </script>
 
@@ -115,7 +116,7 @@
         <button onclick="login();">Facebook Login</button>
     </div>
     <div id="main" style="display:none">
-        Hello Friend!
+        Hello Friend!<br>
         Message: <input type="text" id="message" /> <button onclick="post();">post</button>
     </div>
 
