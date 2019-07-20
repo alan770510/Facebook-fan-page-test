@@ -26,6 +26,27 @@
         };
         // Initialize Firebase
         firebase.initializeApp(firebaseConfig);
+        //check login status
+        //https://firebase.google.com/docs/auth/web/start?authuser=0  
+        //Set an authentication state observer and get user data
+        firebase.auth().onAuthStateChanged(function (user) {
+            if (user) {
+                // User is signed in.
+                console.log(user.email);
+                /*         var displayName = user.displayName;
+                        var email = user.email;
+                        var emailVerified = user.emailVerified;
+                        var photoURL = user.photoURL;
+                        var isAnonymous = user.isAnonymous;
+                        var uid = user.uid;
+                        var providerData = user.providerData; */
+
+            } else {
+                console.log("Not signed in");
+                // User is signed out.
+
+            }
+        });
         let provider = new firebase.auth.FacebookAuthProvider();
         provider.addScope('email,user_birthday');
 
@@ -40,14 +61,14 @@
                 console.log(user);
             }).catch(function (error) {
                 console.log(error);
-                // Handle Errors here.
-                var errorCode = error.code;
-                var errorMessage = error.message;
-                // The email of the user's account used.
-                var email = error.email;
-                // The firebase.auth.AuthCredential type that was used.
-                var credential = error.credential;
-                // ...
+                /*        // Handle Errors here.
+                       var errorCode = error.code;
+                       var errorMessage = error.message;
+                       // The email of the user's account used.
+                       var email = error.email;
+                       // The firebase.auth.AuthCredential type that was used.
+                       var credential = error.credential;
+                       // ... */
             });
         };
     </script>
