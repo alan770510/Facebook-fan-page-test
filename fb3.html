@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Facebook firebase</title>
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/6.3.1/firebase-app.js"></script>
+    <!-- 新的套件來源老師給的 -->
+    <script src="https://www.gstatic.com/firebasejs/6.3.1/firebase-auth.js"></script>
+    <!-- TODO: Add SDKs for Firebase products that you want to use
+         https://firebase.google.com/docs/web/setup#config-web-app -->
+
+    <script>
+        // Your web app's Firebase configuration
+        let firebaseConfig = {
+            apiKey: "AIzaSyDW3ycCjYXilSHe2tmCB4gkWku1m367qm8",
+            authDomain: "advanced-js-test1.firebaseapp.com",
+            databaseURL: "https://advanced-js-test1.firebaseio.com",
+            projectId: "advanced-js-test1",
+            storageBucket: "advanced-js-test1.appspot.com",
+            messagingSenderId: "567074714936",
+            appId: "1:567074714936:web:db30ade342077358"
+        };
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+        let provider = new firebase.auth.FacebookAuthProvider();
+        provider.addScope('email,user_birthday');
+
+        function login() {
+            //https://firebase.google.com/docs/auth/web/facebook-login?authuser=0
+            //5. To sign in with a pop-up window, call signInWithPopup:
+            firebase.auth().signInWithPopup(provider).then(function (result) {
+                // This gives you a Facebook Access Token. You can use it to access the Facebook API.
+                var token = result.credential.accessToken;
+                // The signed-in user info.
+                var user = result.user;
+                console.log(user);
+            }).catch(function (error) {
+                console.log(error);
+                // Handle Errors here.
+                var errorCode = error.code;
+                var errorMessage = error.message;
+                // The email of the user's account used.
+                var email = error.email;
+                // The firebase.auth.AuthCredential type that was used.
+                var credential = error.credential;
+                // ...
+            });
+        };
+    </script>
+</head>
+
+<body>
+    <h3> Facebook login</h3>
+    <button onclick="login();">login</button>
+
+
+
+
+</body>
+
+</html>
